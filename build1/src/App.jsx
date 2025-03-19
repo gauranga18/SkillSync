@@ -3,7 +3,8 @@ import Navbar from './components/Navbar'
 import CareerReadinessSection from './components/CareerReadinessSection'
 import Homepage from './components/HomePage'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-// import ProfileSection from './components/ProfileSection'
+import ProfileSection from './components/ProfileSection'
+import ResourceSection from './components/ResourceSection'
 function App() {
   return (
     <>
@@ -11,6 +12,8 @@ function App() {
   <Router>
     <Routes>
       <Route path="/" element={<Homepage/>}/>
+      <Route path="/ProfileSection" element={<ProfileSection/>}/>
+      <Route path="/ResourceSection" element={<ResourceSection/>}/>
     </Routes>
   </Router>
   <CareerReadinessSection/>
