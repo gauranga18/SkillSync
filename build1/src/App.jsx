@@ -14,9 +14,11 @@ function App() {
       <Route path="/" element={<Homepage/>}/>
       <Route path="/ProfileSection" element={<ProfileSection/>}/>
       <Route path="/ResourceSection" element={<ResourceSection/>}/>
+      <Route path="/ResourceSection" element={<ResourceSection/>}/>
     </Routes>
   </Router>
   <CareerReadinessSection/>
+  <ResourceSection/>
     </>
   )
 } 

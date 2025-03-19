@@ -1,5 +1,9 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa'; // Icon for CTA button
+// Import images locally
+import javascriptFundamentalsImage from './public/JS.jpeg';
+import reactMasterclassImage from './public/ReactJS.jpeg';
+import uiUxDesignBasicsImage from './public/UIUX.jpeg';
 
 const ResourceSection = () => {
   // Mock data for course cards
@@ -8,21 +12,21 @@ const ResourceSection = () => {
       id: 1,
       title: 'JavaScript Fundamentals',
       description: 'Learn the basics of JavaScript and start building interactive web applications.',
-      image: 'https://img.freepik.com/free-photo/programming-background-with-person-working-with-codes-computer_23-2150010125.jpg?w=1380&t=st=1700000000~exp=1700000600~hmac=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef',
+      image: javascriptFundamentalsImage, // Use imported image
       link: '/javascript-fundamentals',
     },
     {
       id: 2,
       title: 'React Masterclass',
       description: 'Master React and build modern, scalable web applications with ease.',
-      image: 'https://img.freepik.com/free-photo/programming-code-abstract-technology-background-software-developer-computer-script_34663-31.jpg?w=1380&t=st=1700000000~exp=1700000600~hmac=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef',
+      image: reactMasterclassImage, // Use imported image
       link: '/react-masterclass',
     },
     {
       id: 3,
       title: 'UI/UX Design Basics',
       description: 'Discover the principles of UI/UX design and create user-friendly interfaces.',
-      image: 'https://img.freepik.com/free-photo/designer-working-his-laptop_23-2148216463.jpg?w=1380&t=st=1700000000~exp=1700000600~hmac=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef',
+      image: uiUxDesignBasicsImage, // Use imported image
       link: '/ui-ux-design-basics',
     },
   ];
@@ -49,7 +53,7 @@ const ResourceSection = () => {
             >
               {/* Course Image */}
               <img
-                src={course.image}
+                src={course.image} // Use imported image directly
                 alt={course.title}
                 className="w-full h-48 object-cover"
               />
