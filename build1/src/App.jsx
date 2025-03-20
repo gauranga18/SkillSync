@@ -15,6 +15,7 @@ function App() {
       <Route path="/ProfileSection" element={<ProfileSection/>}/>
       <Route path="/ResourceSection" element={<ResourceSection/>}/>
       <Route path="/ResourceSection" element={<ResourceSection/>}/>
+      <Route path="/CareerReadinessSection" element={<CareerReadinessSection/>}/>
     </Routes>
   </Router>
   <CareerReadinessSection/>
