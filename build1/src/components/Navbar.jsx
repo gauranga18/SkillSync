@@ -42,13 +42,10 @@ const Navbar = () => {
                 <div className="absolute mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                   <div className="py-1">
                     <a href="/service1" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Service 1
+                      Resources
                     </a>
                     <a href="/service2" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Service 2
-                    </a>
-                    <a href="/service3" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Service 3
+                      Community
                     </a>
                   </div>
                 </div>
