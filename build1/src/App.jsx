@@ -5,6 +5,7 @@ import Homepage from './components/HomePage'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import ProfileSection from './components/ProfileSection'
 import ResourceSection from './components/ResourceSection'
+import Footer from './components/Footer'
 function App() {
   return (
     <>
@@ -16,8 +17,8 @@ function App() {
       <Route path="/ResourceSection" element={<ResourceSection/>}/>
       <Route path="/CareerReadinessSection" element={<CareerReadinessSection/>}/>
     </Routes>
+    <Footer/>
   </Router>
-  <ResourceSection/>
     </>
   )
 } 
