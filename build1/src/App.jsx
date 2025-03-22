@@ -8,17 +8,15 @@ import ResourceSection from './components/ResourceSection'
 function App() {
   return (
     <>
-  <Navbar />
   <Router>
+  <Navbar />
     <Routes>
       <Route path="/" element={<Homepage/>}/>
       <Route path="/ProfileSection" element={<ProfileSection/>}/>
       <Route path="/ResourceSection" element={<ResourceSection/>}/>
-      <Route path="/ResourceSection" element={<ResourceSection/>}/>
       <Route path="/CareerReadinessSection" element={<CareerReadinessSection/>}/>
     </Routes>
   </Router>
-  <CareerReadinessSection/>
   <ResourceSection/>
     </>
   )

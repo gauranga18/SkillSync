@@ -1,6 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CareerReadinessSection = () => {
+  const navigate = useNavigate();
+
+    const goToResouces = () => {
+        navigate("/ResourceSection");  // Navigates to /about
+    };
   return (
     <div className="bg-white dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -71,7 +77,7 @@ const CareerReadinessSection = () => {
 
         {/* CTA Button */}
         <div className="text-center mt-12">
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105">
+          <button onClick={goToResouces} className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105">
             Explore Career Resources
           </button>
         </div>
