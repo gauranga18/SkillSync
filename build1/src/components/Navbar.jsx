@@ -3,7 +3,7 @@ import { createBrowserRouter, Link } from 'react-router-dom';
 import { FaHome, FaInfoCircle, FaCogs, FaEnvelope, FaUser, FaTimes, FaBars } from 'react-icons/fa';
 import { BrowserRouter } from 'react-router-dom';
 import Homepage from './HomePage';
-import About from './About';
+import AboutUs from './AboutUs';
 // import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,7 +41,7 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              to="/About"
+              to="/AboutUs"
               className="flex items-center text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
             >
               <FaInfoCircle className="mr-2" />

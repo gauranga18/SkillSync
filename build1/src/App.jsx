@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProfileSection from './components/ProfileSection';
 import ResourceSection from './components/ResourceSection';
 import Footer from './components/Footer'; // Uncomment or remove based on usage
+import AboutUs from './components/AboutUs';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/ProfileSection" element={<ProfileSection />} />
           <Route path="/ResourceSection" element={<ResourceSection />} />
           <Route path="/CareerReadinessSection" element={<CareerReadinessSection />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
         </Routes>
         {/* Uncomment Footer if you want it visible */}
         {/* <Footer /> */}

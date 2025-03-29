@@ -19,7 +19,7 @@ const HeroSection = () => {
       {/* Image */}
       <div className="mt-12 w-full max-w-4xl">
         <img
-          src="https://img.freepik.com/free-photo/colleagues-using-laptops-notebooks-learning-study-session_23-2149285424.jpg?t=st=1741947570~exp=1741951170~hmac=8d8c6cdba6c7ad6cf7371cd8340f2f73939a20be31aaae8cd81d92c160901e07&w=1380"
+          src="https://cdn.pixabay.com/photo/2024/12/28/01/27/ai-generated-9295105_1280.jpg"
           alt="SkillSync Platform"
           className="w-full h-auto rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
         />
