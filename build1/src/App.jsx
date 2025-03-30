@@ -7,6 +7,7 @@ import ProfileSection from './components/ProfileSection';
 import ResourceSection from './components/ResourceSection';
 import Footer from './components/Footer'; // Uncomment or remove based on usage
 import AboutUs from './components/AboutUs';
+import CommunitySection from './components/CommunitySection';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
           <Route path="/ResourceSection" element={<ResourceSection />} />
           <Route path="/CareerReadinessSection" element={<CareerReadinessSection />} />
           <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/CommunitySection" element={<CommunitySection />} />
+
         </Routes>
         {/* Uncomment Footer if you want it visible */}
         {/* <Footer /> */}

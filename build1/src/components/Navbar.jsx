@@ -4,6 +4,8 @@ import { FaHome, FaInfoCircle, FaCogs, FaEnvelope, FaUser, FaTimes, FaBars } fro
 import { BrowserRouter } from 'react-router-dom';
 import Homepage from './HomePage';
 import AboutUs from './AboutUs';
+import ResourceSection from './ResourceSection'
+import CommunitySection from './CommunitySection';
 // import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -59,13 +61,13 @@ const Navbar = () => {
                 <div className="absolute mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-gray-700 z-50">
                   <div className="py-1">
                     <Link
-                      to="/"
+                      to="/ResourceSection"
                       className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
                     >
                       Resources
                     </Link>
                     <Link
-                      to="/"
+                      to="/CommunitySection"
                       className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
                     >
                       Community

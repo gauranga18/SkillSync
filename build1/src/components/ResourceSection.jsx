@@ -1,83 +1,127 @@
 import React from 'react';
-import { FaArrowRight } from 'react-icons/fa'; // Icon for CTA button
-// Import images locally
-import javascriptFundamentalsImage from './public/JS.jpeg';
-import reactMasterclassImage from './public/ReactJS.jpeg';
-import uiUxDesignBasicsImage from './public/UIUX.jpeg';
+import { FaArrowRight } from 'react-icons/fa';
 
 const ResourceSection = () => {
-  // Mock data for course cards
+  // Course data with placeholder images (replace with your actual imports)
   const courses = [
     {
       id: 1,
       title: 'JavaScript Fundamentals',
-      description: 'Learn the basics of JavaScript and start building interactive web applications.',
-      image: javascriptFundamentalsImage, // Use imported image
-      link: '/javascript-fundamentals',
+      description: 'Master the core concepts of JavaScript with hands-on projects',
+      image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+      duration: '6 Weeks',
+      level: 'Beginner'
     },
     {
       id: 2,
       title: 'React Masterclass',
-      description: 'Master React and build modern, scalable web applications with ease.',
-      image: reactMasterclassImage, // Use imported image
-      link: '/react-masterclass',
+      description: 'Build modern applications with React hooks and context API',
+      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+      duration: '8 Weeks',
+      level: 'Intermediate'
     },
     {
       id: 3,
       title: 'UI/UX Design Basics',
-      description: 'Discover the principles of UI/UX design and create user-friendly interfaces.',
-      image: uiUxDesignBasicsImage, // Use imported image
-      link: '/ui-ux-design-basics',
+      description: 'Learn design principles and create user-centered interfaces',
+      image: 'https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+      duration: '4 Weeks',
+      level: 'Beginner'
     },
+    {
+      id: 4,
+      title: 'Node.js Backend',
+      description: 'Develop scalable server-side applications with Node.js',
+      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+      duration: '6 Weeks',
+      level: 'Intermediate'
+    },
+    {
+      id: 5,
+      title: 'Python for Data Science',
+      description: 'Analyze and visualize data with Python libraries',
+      image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+      duration: '5 Weeks',
+      level: 'Beginner'
+    },
+    {
+      id: 6,
+      title: 'DevOps Essentials',
+      description: 'Learn CI/CD pipelines and cloud deployment strategies',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+      duration: '7 Weeks',
+      level: 'Advanced'
+    }
   ];
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 p-6 sm:p-8 lg:p-12">
+    <div className="bg-gradient-to-b from-black to-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Resource Section Title & Description */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
-            Explore Our Resources
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <span className="bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
+              Learning Paths
+            </span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            Discover a wide range of courses designed to help you achieve your learning goals.
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Structured courses designed to take you from beginner to job-ready
           </p>
         </div>
 
-        {/* Course Navigation Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Course Grid */}
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => (
             <div
               key={course.id}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-green-500/30"
             >
               {/* Course Image */}
-              <img
-                src={course.image} // Use imported image directly
-                alt={course.title}
-                className="w-full h-48 object-cover"
-              />
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={course.image}
+                  alt={course.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
 
               {/* Course Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
-                  {course.title}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                  {course.description}
-                </p>
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-xl font-bold text-white">{course.title}</h3>
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    course.level === 'Beginner' ? 'bg-green-900/50 text-green-400' :
+                    course.level === 'Intermediate' ? 'bg-yellow-900/50 text-yellow-400' :
+                    'bg-red-900/50 text-red-400'
+                  }`}>
+                    {course.level}
+                  </span>
+                </div>
+                
+                <p className="text-gray-400 text-sm mb-4">{course.description}</p>
+                
+                <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
+                  <span>⏱️ {course.duration}</span>
+                  <span>⭐ ⭐ ⭐ ⭐ ⭐</span>
+                </div>
 
                 {/* CTA Button */}
-                <a
-                  href={course.link}
-                  className="flex items-center justify-center w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
-                >
-                  <span>Start Learning</span>
-                  <FaArrowRight className="w-4 h-4 ml-2" />
-                </a>
+                <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-green-500 text-white py-2 px-4 rounded-lg font-medium hover:from-green-500 hover:to-green-400 transition-all duration-300">
+                  Enroll Now
+                  <FaArrowRight className="w-3 h-3" />
+                </button>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View All Button */}
+        <div className="text-center mt-10">
+          <button className="inline-flex items-center px-6 py-3 border border-gray-700 rounded-full text-white font-medium hover:bg-gray-800/50 hover:border-green-500 transition-all duration-300">
+            View All Courses
+            <FaArrowRight className="ml-2 w-4 h-4" />
+          </button>
         </div>
       </div>
     </div>
