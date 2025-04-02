@@ -6,7 +6,8 @@ import {
   doSignInWithEmailAndPassword, 
   doSignInWithGoogle,
   doSignInWithGithub,
-  doCreateUserWithEmailAndPassword 
+  doCreateUserWithEmailAndPassword,
+  doPasswordReset
 } from '../firebase/Auth';
 import { useAuth } from '../context/authContext';
 
@@ -24,6 +25,8 @@ const AuthForm = () => {
   });
   const [errors, setErrors] = useState({});
   const [authError, setAuthError] = useState('');
+  const [showResetPassword, setShowResetPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -78,6 +81,23 @@ const AuthForm = () => {
     }
   };
 
+  const handlePasswordReset = async (e) => {
+    e.preventDefault();
+    if (!resetEmail.trim()) {
+      setAuthError('Please enter your email');
+      return;
+    }
+    
+    try {
+      await doPasswordReset(resetEmail);
+      setAuthError('');
+      alert(`Password reset email sent to ${resetEmail}`);
+      setShowResetPassword(false);
+    } catch (error) {
+      setAuthError(getAuthErrorMessage(error.code));
+    }
+  };
+
   const onSocialSignIn = async (provider) => {
     setIsSigningIn(true);
     setAuthError('');
@@ -107,6 +127,8 @@ const AuthForm = () => {
         return 'No account found with this email';
       case 'auth/too-many-requests':
         return 'Too many attempts. Try again later.';
+      case 'auth/network-request-failed':
+        return 'Network error. Please check your connection.';
       default:
         return 'Authentication failed. Please try again.';
     }
@@ -116,6 +138,8 @@ const AuthForm = () => {
     setIsLogin(!isLogin);
     setErrors({});
     setAuthError('');
+    setShowPassword(false);
+    setShowConfirmPassword(false);
     setFormData({
       email: '',
       username: '',
@@ -126,6 +150,62 @@ const AuthForm = () => {
 
   if (userLoggedIn) {
     return <Navigate to="/" replace={true} />;
+  }
+
+  if (showResetPassword) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 flex items-center justify-center p-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="w-full max-w-md"
+        >
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden border border-gray-700 p-6">
+            <h2 className="text-2xl font-bold text-white mb-4">Reset Password</h2>
+            <p className="text-gray-400 mb-6">Enter your email to receive a password reset link</p>
+            
+            {authError && (
+              <div className="bg-red-500/20 text-red-300 p-3 rounded-lg text-sm mb-4">
+                {authError}
+              </div>
+            )}
+
+            <form onSubmit={handlePasswordReset} className="space-y-4">
+              <div>
+                <label className="block text-gray-400 text-sm mb-2">Email</label>
+                <input
+                  type="email"
+                  value={resetEmail}
+                  onChange={(e) => setResetEmail(e.target.value)}
+                  className="w-full bg-gray-700/50 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-500/50 transition-all"
+                  placeholder="Enter your email"
+                />
+              </div>
+
+              <div className="flex gap-3">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="flex-1 bg-gradient-to-r from-green-600 to-green-500 text-white py-3 px-4 rounded-lg font-bold hover:shadow-lg hover:shadow-green-500/20 transition-all"
+                >
+                  Send Reset Link
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="button"
+                  onClick={() => setShowResetPassword(false)}
+                  className="flex-1 bg-gray-700 text-white py-3 px-4 rounded-lg font-bold hover:bg-gray-600 transition-all"
+                >
+                  Cancel
+                </motion.button>
+              </div>
+            </form>
+          </div>
+        </motion.div>
+      </div>
+    );
   }
 
   return (
@@ -233,7 +313,7 @@ const AuthForm = () => {
               <div className="flex justify-end">
                 <button
                   type="button"
-                  onClick={() => console.log('Forgot password clicked')}
+                  onClick={() => setShowResetPassword(true)}
                   className="text-sm text-gray-400 hover:text-green-400 transition-colors"
                 >
                   Forgot Password?
