@@ -9,8 +9,9 @@ import Footer from './components/Footer'; // Uncomment or remove based on usage
 import AboutUs from './components/AboutUs';
 import CommunitySection from './components/CommunitySection';
 import AuthForm from './components/AuthForm';
+import ContactUs from './components/ContactUs';
 
-function App() {
+function App() {                      
   return (
     <>
       <Router>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/CareerReadinessSection" element={<CareerReadinessSection />} />
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/CommunitySection" element={<CommunitySection />} />
+          <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/AuthForm" element={<AuthForm />} />
         </Routes>
         {/* Uncomment Footer if you want it visible */}

@@ -5,9 +5,10 @@ import { BrowserRouter } from 'react-router-dom';
 import Homepage from './HomePage';
 import AboutUs from './AboutUs';
 import ResourceSection from './ResourceSection'
-import CommunitySection from './CommunitySection';
-import AuthForm from './AuthForm';
+import CommunitySection from './CommunitySection';                                                           
+import AuthForm from './AuthForm';                                   
 // import { Link } from 'react-router-dom';
+import ContactUs from './ContactUs';
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
@@ -130,7 +131,7 @@ const Navbar = () => {
             Services
           </Link>
           <Link
-            to="/"
+            to="/ContactUs"
             className="flex items-center text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium"
           >
             <FaEnvelope className="mr-3" />
