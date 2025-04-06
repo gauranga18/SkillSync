@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import { createBrowserRouter, Link } from 'react-router-dom';
-import { FaHome, FaInfoCircle, FaCogs, FaEnvelope, FaUser, FaTimes, FaBars } from 'react-icons/fa';
-import { BrowserRouter } from 'react-router-dom';
-import Homepage from './HomePage';
-import AboutUs from './AboutUs';
-import ResourceSection from './ResourceSection'
-import CommunitySection from './CommunitySection';                                                           
-import AuthForm from './AuthForm';                                   
-// import { Link } from 'react-router-dom';
-import ContactUs from './ContactUs';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaHome, FaInfoCircle, FaCogs, FaEnvelope, FaUser, FaTimes, FaBars, FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState(null);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -21,132 +16,239 @@ const Navbar = () => {
     setIsServicesDropdownOpen(!isServicesDropdownOpen);
   };
 
+  const navLinks = [
+    { path: "/", icon: <FaHome />, text: "Home" },
+    { path: "/AboutUs", icon: <FaInfoCircle />, text: "About" },
+    { path: "/ContactUs", icon: <FaEnvelope />, text: "Contact" },
+    { path: "/AuthForm", icon: <FaUser />, text: "Profile" }
+  ];
+
+  const servicesLinks = [
+    { path: "/ResourceSection", text: "Resources" },
+    { path: "/CommunitySection", text: "Community" }
+  ];
+
+  // Animation variants
+  const mobileMenuVariants = {
+    open: { 
+      opacity: 1,
+      height: "auto",
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+    },
+    closed: { 
+      opacity: 0,
+      height: 0,
+      transition: { staggerChildren: 0.1, staggerDirection: -1 }
+    }
+  };
+
+  const navItemVariants = {
+    open: { y: 0, opacity: 1 },
+    closed: { y: -20, opacity: 0 }
+  };
+
   return (
-    <nav className="bg-gradient-to-r from-black to-gray-800 shadow-lg sticky top-0 z-50 border-2 border-white animate-fadeIn">
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-gradient-to-r from-black to-gray-800 shadow-lg sticky top-0 z-50 border-b-2 border-gray-700"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Brand/Logo */}
-          <div className="flex items-center">
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center"
+          >
             <Link 
               to="/" 
-              className="text-xl font-bold text-white hover:text-green-400 transition-colors duration-200"
+              className="text-xl font-bold text-white hover:text-green-400 transition-colors duration-200 flex items-center"
             >
-              Skill Sync
+              <motion.span
+                animate={{ 
+                  textShadow: hoveredLink === "logo" ? "0 0 8px rgba(34, 197, 94, 0.6)" : "none"
+                }}
+                onHoverStart={() => setHoveredLink("logo")}
+                onHoverEnd={() => setHoveredLink(null)}
+              >
+                SkillSync
+              </motion.span>
             </Link>
-          </div>
+          </motion.div>
 
           {/* Navigation Links (Desktop) */}
           <div className="hidden sm:flex sm:items-center sm:space-x-2">
-            <Link
-              to="/"
-              className="flex items-center text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            {navLinks.slice(0, 2).map((link, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                onHoverStart={() => setHoveredLink(link.text)}
+                onHoverEnd={() => setHoveredLink(null)}
+              >
+                <Link
+                  to={link.path}
+                  className="flex items-center text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                >
+                  <motion.span
+                    animate={{ 
+                      color: hoveredLink === link.text ? '#22c55e' : '#d1d5db'
+                    }}
+                    className="mr-2"
+                  >
+                    {link.icon}
+                  </motion.span>
+                  {link.text}
+                  {hoveredLink === link.text && (
+                    <motion.span
+                      layoutId="navIndicator"
+                      className="absolute bottom-0 left-0 w-full h-0.5 bg-green-500"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      exit={{ scaleX: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </Link>
+              </motion.div>
+            ))}
+
+            {/* Services Dropdown */}
+            <motion.div 
+              className="relative"
+              whileHover={{ scale: 1.05 }}
             >
-              <FaHome className="mr-2" />
-              Home
-            </Link>
-            <Link
-              to="/AboutUs"
-              className="flex items-center text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-            >
-              <FaInfoCircle className="mr-2" />
-              About
-            </Link>
-            <div className="relative">
-              <button
+              <motion.button
                 onClick={toggleServicesDropdown}
                 className="flex items-center text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium focus:outline-none transition-colors duration-200"
+                whileHover={{ color: '#22c55e' }}
               >
                 <FaCogs className="mr-2" />
                 Services
-              </button>
-              {isServicesDropdownOpen && (
-                <div className="absolute mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-gray-700 z-50">
-                  <div className="py-1">
-                    <Link
-                      to="/ResourceSection"
-                      className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
-                    >
-                      Resources
-                    </Link>
-                    <Link
-                      to="/CommunitySection"
-                      className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
-                    >
-                      Community
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-            <Link
-              to="/ContactUS"
-              className="flex items-center text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-            >
-              <FaEnvelope className="mr-2" />
-              Contact
-            </Link>
+              </motion.button>
+
+              <AnimatePresence>
+                {isServicesDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-gray-700 z-50 overflow-hidden"
+                  >
+                    <div className="py-1">
+                      {servicesLinks.map((link, index) => (
+                        <motion.div
+                          key={index}
+                          whileHover={{ x: 5 }}
+                        >
+                          <Link
+                            to={link.path}
+                            className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+                          >
+                            <FaArrowRight className="mr-2 text-green-400 text-xs" />
+                            {link.text}
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            {navLinks.slice(2).map((link, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                onHoverStart={() => setHoveredLink(link.text)}
+                onHoverEnd={() => setHoveredLink(null)}
+              >
+                <Link
+                  to={link.path}
+                  className="flex items-center text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                >
+                  <motion.span
+                    animate={{ 
+                      color: hoveredLink === link.text ? '#22c55e' : '#d1d5db'
+                    }}
+                    className="mr-2"
+                  >
+                    {link.icon}
+                  </motion.span>
+                  {link.text}
+                </Link>
+              </motion.div>
+            ))}
           </div>
 
-          {/* Profile and Mobile Menu Button */}
-          <div className="flex items-center space-x-4">
-            <Link
-              to="/AuthForm"
-              className="hidden sm:flex items-center text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-            >
-              <FaUser className="mr-2" />
-              Profile
-            </Link>
+          {/* Mobile Menu Button */}
+          <motion.div 
+            className="flex items-center space-x-4"
+            whileHover={{ scale: 1.1 }}
+          >
             <button
               onClick={toggleMobileMenu}
               className="sm:hidden p-2 text-gray-300 hover:text-white focus:outline-none"
             >
               {isMobileMenuOpen ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
             </button>
-          </div>
+          </motion.div>
         </div>
       </div>
 
       {/* Mobile Menu (Collapsible) */}
-      <div className={`sm:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-gray-800`}>
-        <div className="px-2 pt-2 pb-3 space-y-1">
-          <Link
-            to="/"
-            className="flex items-center text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={mobileMenuVariants}
+            className="sm:hidden bg-gray-800 overflow-hidden"
           >
-            <FaHome className="mr-3" />
-            Home
-          </Link>
-          <Link
-            to="/"
-            className="flex items-center text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-          >
-            <FaInfoCircle className="mr-3" />
-            About
-          </Link>
-          <Link
-            to="/"
-            className="flex items-center text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-          >
-            <FaCogs className="mr-3" />
-            Services
-          </Link>
-          <Link
-            to="/ContactUs"
-            className="flex items-center text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-          >
-            <FaEnvelope className="mr-3" />
-            Contact
-          </Link>
-          <Link
-            to="/ProfileSection"
-            className="flex items-center text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-          >
-            <FaUser className="mr-3" />
-            Profile
-          </Link>
-        </div>
-      </div>
-    </nav>
+            <motion.div className="px-2 pt-2 pb-3 space-y-1">
+              {navLinks.map((link, index) => (
+                <motion.div
+                  key={index}
+                  variants={navItemVariants}
+                >
+                  <Link
+                    to={link.path}
+                    className="flex items-center text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                    onClick={toggleMobileMenu}
+                  >
+                    <span className="mr-3">{link.icon}</span>
+                    {link.text}
+                  </Link>
+                </motion.div>
+              ))}
+              
+              {/* Services Dropdown in Mobile */}
+              <motion.div variants={navItemVariants}>
+                <div className="flex flex-col pl-4">
+                  <h4 className="flex items-center text-gray-400 px-3 py-2 text-base font-medium">
+                    <FaCogs className="mr-3" />
+                    Services
+                  </h4>
+                  {servicesLinks.map((link, index) => (
+                    <Link
+                      key={index}
+                      to={link.path}
+                      className="flex items-center text-gray-300 hover:text-white px-6 py-2 rounded-md text-base font-medium"
+                      onClick={toggleMobileMenu}
+                    >
+                      <FaArrowRight className="mr-3 text-xs text-green-400" />
+                      {link.text}
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 
