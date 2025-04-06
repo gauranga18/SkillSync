@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
+import { Link } from 'react-router-dom';
 const AboutUs = () => {
   const platformPillars = [
     { 
@@ -128,13 +128,17 @@ const AboutUs = () => {
             <p className="text-gray-300 mb-6 flex-grow text-center">
               Built with a focus on solving real learning challenges in today's fast-moving tech landscape.
             </p>
-            <motion.button 
-              className="bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-full text-sm font-medium transition-colors self-center"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Contact for Questions
-            </motion.button>
+            <div className="flex justify-center">
+  <Link to="/ContactUS">
+    <motion.button 
+      className="bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-full text-sm font-medium transition-colors"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      Contact for Questions
+    </motion.button>
+  </Link>
+</div>
           </motion.div>
 
           {/* CTA Card */}
@@ -148,13 +152,15 @@ const AboutUs = () => {
             <p className="text-gray-200 mb-6">
               Start building in-demand skills today with our structured approach
             </p>
-            <motion.button 
-              className="bg-white text-gray-900 font-medium py-2.5 px-8 rounded-full hover:scale-105 transition-transform shadow-lg"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get Started Now !
-            </motion.button>
+            <div className="flex justify-center">
+  <motion.button 
+    className="w-4/5 bg-white text-gray-900 font-medium py-2.5 px-8 rounded-full hover:scale-105 transition-transform shadow-lg"
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    Get Started Now !
+  </motion.button>
+</div>
           </motion.div>
         </div>
       </section>
