@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const ResourceSection = () => {
   // Course data with placeholder images (replace with your actual imports)
@@ -54,11 +55,32 @@ const ResourceSection = () => {
     }
   ];
 
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
   return (
     <div className="bg-gradient-to-b from-black to-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             <span className="bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
               Learning Paths
@@ -67,13 +89,21 @@ const ResourceSection = () => {
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             Structured courses designed to take you from beginner to job-ready
           </p>
-        </div>
+        </motion.div>
 
         {/* Course Grid */}
-        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {courses.map((course) => (
-            <div
+            <motion.div
               key={course.id}
+              variants={item}
+              whileHover={{ scale: 1.02 }}
               className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-green-500/30"
             >
               {/* Course Image */}
@@ -107,22 +137,35 @@ const ResourceSection = () => {
                 </div>
 
                 {/* CTA Button */}
-                <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-green-500 text-white py-2 px-4 rounded-lg font-medium hover:from-green-500 hover:to-green-400 transition-all duration-300">
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-green-500 text-white py-2 px-4 rounded-lg font-medium hover:from-green-500 hover:to-green-400 transition-all duration-300"
+                >
                   Enroll Now
                   <FaArrowRight className="w-3 h-3" />
-                </button>
+                </motion.button>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* View All Button */}
-        <div className="text-center mt-10">
-          <button className="inline-flex items-center px-6 py-3 border border-gray-700 rounded-full text-white font-medium hover:bg-gray-800/50 hover:border-green-500 transition-all duration-300">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="text-center mt-10"
+        >
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center px-6 py-3 border border-gray-700 rounded-full text-white font-medium hover:bg-gray-800/50 hover:border-green-500 transition-all duration-300"
+          >
             View All Courses
             <FaArrowRight className="ml-2 w-4 h-4" />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
     </div>
   );
