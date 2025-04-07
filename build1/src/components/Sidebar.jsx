@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaHome, FaBook, FaFolder, FaCog, FaUser, FaTimes, FaBars, FaArrowRight, FaCrown } from 'react-icons/fa';
 
@@ -11,38 +12,40 @@ const Sidebar = () => {
   };
 
   const navItems = [
-    { icon: <FaHome className="w-5 h-5" />, label: "Dashboard", path: "/dashboard" },
-    { icon: <FaBook className="w-5 h-5" />, label: "Courses", path: "/courses" },
-    { icon: <FaFolder className="w-5 h-5" />, label: "Resources", path: "/resources" },
-    { icon: <FaCog className="w-5 h-5" />, label: "Settings", path: "/settings" }
+    { icon: <FaHome />, label: "Dashboard", path: "/dashboard" },
+    { icon: <FaBook />, label: "Courses", path: "/courses" },
+    { icon: <FaFolder />, label: "Resources", path: "/resources" },
+    { icon: <FaCog />, label: "Settings", path: "/settings" }
   ];
 
-  // Animation variants
+  // Optimized animation variants
   const sidebarVariants = {
-    open: { width: 256 },
-    closed: { width: 64 }
+    open: { width: 256, transition: { type: 'spring', damping: 20 } },
+    closed: { width: 64, transition: { type: 'spring', damping: 20 } }
   };
 
   const itemVariants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: -20 }
+    open: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 500 } },
+    closed: { opacity: 0, x: -20, transition: { duration: 0.2 } }
   };
 
   return (
     <motion.div
-      initial={isSidebarOpen ? "open" : "closed"}
+      initial={false}
       animate={isSidebarOpen ? "open" : "closed"}
       variants={sidebarVariants}
-      className="bg-gradient-to-b from-black to-gray-800 shadow-lg h-screen sticky top-0 z-50 border-r-2 border-gray-700 overflow-hidden"
+      className="bg-gradient-to-b from-black to-gray-800 shadow-lg h-screen sticky top-0 z-50 border-r border-gray-700 overflow-hidden"
     >
       {/* Branding/Logo */}
       <div className="p-4 border-b border-gray-700 flex justify-between items-center">
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {isSidebarOpen && (
             <motion.div
+              key="logo"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               className="text-xl font-bold text-white"
             >
               SkillSync
@@ -54,7 +57,8 @@ const Sidebar = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleSidebar}
-          className="p-2 text-gray-300 hover:text-white focus:outline-none transition-colors duration-200"
+          className="p-2 text-gray-300 hover:text-white focus:outline-none"
+          aria-label={isSidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
         >
           {isSidebarOpen ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
         </motion.button>
@@ -90,6 +94,7 @@ const Sidebar = () => {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -10 }}
+                transition={{ duration: 0.2 }}
               >
                 <p className="text-sm font-medium text-white">User</p>
                 <p className="text-xs text-gray-400">user@gmail.com</p>
@@ -104,26 +109,28 @@ const Sidebar = () => {
         <ul className="space-y-2">
           {navItems.map((item, index) => (
             <motion.li
-              key={index}
+              key={item.path}
               whileHover={{ scale: 1.02 }}
               onHoverStart={() => setHoveredItem(index)}
               onHoverEnd={() => setHoveredItem(null)}
             >
-              <a
-                href={item.path}
-                className="flex items-center p-3 text-gray-300 hover:bg-gray-700 rounded-lg transition-all duration-200 group relative"
+              <Link
+                to={item.path}
+                className="flex items-center p-3 text-gray-300 hover:bg-gray-700 rounded-lg transition-colors duration-200 group relative"
               >
                 <motion.div
                   animate={{
                     color: hoveredItem === index ? '#22c55e' : '#d1d5db'
                   }}
+                  transition={{ duration: 0.1 }}
                 >
-                  {item.icon}
+                  {React.cloneElement(item.icon, { className: "w-5 h-5" })}
                 </motion.div>
                 
-                <AnimatePresence>
+                <AnimatePresence mode="wait">
                   {isSidebarOpen && (
                     <motion.span
+                      key={`text-${item.path}`}
                       variants={itemVariants}
                       initial="closed"
                       animate="open"
@@ -142,24 +149,27 @@ const Sidebar = () => {
                       opacity: hoveredItem === index ? 1 : 0,
                       x: hoveredItem === index ? 0 : -10
                     }}
+                    transition={{ duration: 0.1 }}
                     className="absolute right-3"
                   >
                     <FaArrowRight className="w-4 h-4 text-green-400" />
                   </motion.div>
                 )}
-              </a>
+              </Link>
             </motion.li>
           ))}
         </ul>
       </nav>
 
       {/* Upgrade CTA */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isSidebarOpen && (
           <motion.div
+            key="upgrade-cta"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.2 }}
             className="p-4 mt-auto"
           >
             <motion.button
