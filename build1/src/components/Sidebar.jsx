@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom'; // Changed from Link to NavLink
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaHome, FaBook, FaFolder, FaCog, FaUser, FaTimes, FaBars, FaArrowRight, FaCrown, FaBrain } from 'react-icons/fa';
+import { FaHome, FaBook, FaFolder, FaCog, FaUser, FaTimes, FaBars, FaArrowRight, FaCrown, FaBrain, FaVial } from 'react-icons/fa';
 import ResourceSection from './ResourceSection';
 import Brainstorm from './Brainstorm';
+import Practice from './Practice';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -14,7 +15,7 @@ const Sidebar = () => {
   };
 
   const navItems = [
-    { icon: <FaHome />, label: "Dashboard", path: "/dashboard" },
+    { icon: <FaVial />, label: "Practice/Challanges", path: "/Practice" },
     { icon: <FaBook />, label: "Courses", path: "/ResourceSection" },
     { icon: <FaBrain />, label: "Brainstorm", path: "/Brainstorm" },
     { icon: <FaCog />, label: "Settings", path: "/settings" }
