@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'; // Changed from Link to NavLink
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaHome, FaBook, FaFolder, FaCog, FaUser, FaTimes, FaBars, FaArrowRight, FaCrown } from 'react-icons/fa';
+import ResourceSection from './ResourceSection';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -13,12 +14,12 @@ const Sidebar = () => {
 
   const navItems = [
     { icon: <FaHome />, label: "Dashboard", path: "/dashboard" },
-    { icon: <FaBook />, label: "Courses", path: "/courses" },
+    { icon: <FaBook />, label: "Courses", path: "/ResourceSection" },
     { icon: <FaFolder />, label: "Resources", path: "/resources" },
     { icon: <FaCog />, label: "Settings", path: "/settings" }
   ];
 
-  // Optimized animation variants
+  // Animation variants (unchanged)
   const sidebarVariants = {
     open: { width: 256, transition: { type: 'spring', damping: 20 } },
     closed: { width: 64, transition: { type: 'spring', damping: 20 } }
@@ -36,7 +37,7 @@ const Sidebar = () => {
       variants={sidebarVariants}
       className="bg-gradient-to-b from-black to-gray-800 shadow-lg h-screen sticky top-0 z-50 border-r border-gray-700 overflow-hidden"
     >
-      {/* Branding/Logo */}
+      {/* Branding/Logo (unchanged) */}
       <div className="p-4 border-b border-gray-700 flex justify-between items-center">
         <AnimatePresence mode="wait">
           {isSidebarOpen && (
@@ -64,7 +65,7 @@ const Sidebar = () => {
         </motion.button>
       </div>
 
-      {/* User Profile Section */}
+      {/* User Profile Section (unchanged) */}
       <div className="p-4 border-b border-gray-700">
         <div className="flex items-center space-x-3">
           <motion.div 
@@ -104,7 +105,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Navigation Links */}
+      {/* Navigation Links - Updated to use NavLink */}
       <nav className="p-4">
         <ul className="space-y-2">
           {navItems.map((item, index) => (
@@ -114,9 +115,15 @@ const Sidebar = () => {
               onHoverStart={() => setHoveredItem(index)}
               onHoverEnd={() => setHoveredItem(null)}
             >
-              <Link
+              <NavLink
                 to={item.path}
-                className="flex items-center p-3 text-gray-300 hover:bg-gray-700 rounded-lg transition-colors duration-200 group relative"
+                className={({ isActive }) => 
+                  `flex items-center p-3 rounded-lg transition-colors duration-200 group relative ${
+                    isActive 
+                      ? 'bg-gray-700 text-white' 
+                      : 'text-gray-300 hover:bg-gray-700'
+                  }`
+                }
               >
                 <motion.div
                   animate={{
@@ -155,13 +162,13 @@ const Sidebar = () => {
                     <FaArrowRight className="w-4 h-4 text-green-400" />
                   </motion.div>
                 )}
-              </Link>
+              </NavLink>
             </motion.li>
           ))}
         </ul>
       </nav>
 
-      {/* Upgrade CTA */}
+      {/* Upgrade CTA (unchanged) */}
       <AnimatePresence mode="wait">
         {isSidebarOpen && (
           <motion.div
