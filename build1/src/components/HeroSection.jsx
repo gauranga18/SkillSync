@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { FaArrowRight, FaChevronDown } from 'react-icons/fa';
 import SurveyModal from './SurveyModal';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const HeroSection = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -79,10 +81,10 @@ const HeroSection = () => {
         transition={{ duration: 1 }}
       >
         {/* Floating gradient dots */}
-        {[...Array(8)].map((_, i) => (
+        {[...Array(40)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-gradient-to-r from-green-500 to-green-600"
+            className="absolute rounded-full bg-gradient-to-r from-green-600 to-green-700"
             style={{
               width: `${Math.random() * 10 + 5}px`,
               height: `${Math.random() * 10 + 5}px`,
@@ -91,8 +93,8 @@ const HeroSection = () => {
               opacity: 0.1 + Math.random() * 0.2
             }}
             animate={{
-              y: [0, (Math.random() - 0.5) * 40],
-              x: [0, (Math.random() - 0.5) * 40],
+              y: [0, (Math.random() - 0.5) * 400],
+              x: [0, (Math.random() - 0.5) * 400],
             }}
             transition={{
               duration: 5 + Math.random() * 10,
@@ -106,7 +108,8 @@ const HeroSection = () => {
 
       {/* Hero Content */}
       <div>
-        <h1>Welcom Back !</h1>
+      <Popup trigger={<button> Trigger</button>} position="right center">
+    <div><h1>Welcome Back !</h1>
         <SurveyModal isOpen={showSurvey} onClose={()=>{
           setShowSurvey(false)
         }}>
@@ -117,7 +120,8 @@ const HeroSection = () => {
         }>
           Submit
         </button>
-        </SurveyModal>
+        </SurveyModal></div>
+  </Popup>
       </div>
       <motion.div 
         className="text-center max-w-2xl px-2 sm:px-4 z-10"
