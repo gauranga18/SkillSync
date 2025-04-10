@@ -11,6 +11,7 @@ import CommunitySection from './components/CommunitySection';
 import AuthForm from './components/AuthForm';
 import ContactUs from './components/ContactUs';
 import Settings from './components/Settings';
+import SurveyModal from './components/SurveyModal';
 
 function App() {                      
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/AuthForm" element={<AuthForm />} />
           <Route path="/Settings" element={<Settings />} />
+          <Route path="/SurveyModal" element={<SurveyModal />} />
         </Routes>
         {/* Uncomment Footer if you want it visible */}
         {/* <Footer /> */}

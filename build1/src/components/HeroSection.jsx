@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { FaArrowRight, FaChevronDown } from 'react-icons/fa';
+import SurveyModal from './SurveyModal';
 
 const HeroSection = () => {
   const [isHovered, setIsHovered] = useState(false);
   const controls = useAnimation();
+  // Add survey functionality
+  const [ showSurvey, setShowSurvey] = useState(true);
 
   // Enhanced animation variants
   const container = {
@@ -102,6 +105,20 @@ const HeroSection = () => {
       </motion.div>
 
       {/* Hero Content */}
+      <div>
+        <h1>Welcom Back !</h1>
+        <SurveyModal isOpen={showSurvey} onClose={()=>{
+          setShowSurvey(false)
+        }}>
+        <button onClick={
+        ()=>{
+          setShowSurvey(false)
+        }  
+        }>
+          Submit
+        </button>
+        </SurveyModal>
+      </div>
       <motion.div 
         className="text-center max-w-2xl px-2 sm:px-4 z-10"
       >
