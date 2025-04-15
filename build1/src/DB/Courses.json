@@ -1,9 +1,43 @@
-
- {
- "id": 1,
- "title": "JavaScript Fundamentals",
-"description": "Master the core concepts of JavaScript with hands-on projects",
-"image": "your-url",
-"duration": "6 Weeks",
-"level": "Beginner"
-}    
+[
+    {
+      "id": 1,
+      "title": "JavaScript Fundamentals",
+      "description": "Master the core concepts of JavaScript with hands-on projects",
+      "image": "your-url",
+      "duration": "6 Weeks",
+      "level": "Beginner"
+    },
+    {
+      "id": 2,
+      "title": "Advanced CSS Techniques",
+      "description": "Learn modern CSS practices and responsive design",
+      "image": "your-url",
+      "duration": "4 Weeks",
+      "level": "Intermediate"
+    },
+    {
+      "id": 3,
+      "title": "React for Beginners",
+      "description": "Understand the basics of React and build interactive UIs",
+      "image": "your-url",
+      "duration": "8 Weeks",
+      "level": "Beginner"
+    },
+    {
+      "id": 4,
+      "title": "Node.js and Express",
+      "description": "Learn how to build backend services using Node.js and Express",
+      "image": "your-url",
+      "duration": "6 Weeks",
+      "level": "Intermediate"
+    },
+    {
+      "id": 5,
+      "title": "Full-Stack Development",
+      "description": "Build full-stack web applications with React, Node.js, and MongoDB",
+      "image": "your-url",
+      "duration": "12 Weeks",
+      "level": "Advanced"
+    }
+  ]
+  
