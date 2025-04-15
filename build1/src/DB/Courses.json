@@ -3,41 +3,57 @@
       "id": 1,
       "title": "JavaScript Fundamentals",
       "description": "Master the core concepts of JavaScript with hands-on projects",
-      "image": "your-url",
+      "image": "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
       "duration": "6 Weeks",
       "level": "Beginner"
     },
     {
       "id": 2,
-      "title": "Advanced CSS Techniques",
-      "description": "Learn modern CSS practices and responsive design",
-      "image": "your-url",
-      "duration": "4 Weeks",
+      "title": "React Masterclass",
+      "description": "Build modern applications with React hooks and context API",
+      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      "duration": "8 Weeks",
       "level": "Intermediate"
     },
     {
       "id": 3,
-      "title": "React for Beginners",
-      "description": "Understand the basics of React and build interactive UIs",
-      "image": "your-url",
-      "duration": "8 Weeks",
+      "title": "UI/UX Design Basics",
+      "description": "Learn design principles and create user-centered interfaces",
+      "image": "https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      "duration": "4 Weeks",
       "level": "Beginner"
     },
     {
       "id": 4,
-      "title": "Node.js and Express",
-      "description": "Learn how to build backend services using Node.js and Express",
-      "image": "your-url",
+      "title": "Node.js Backend",
+      "description": "Develop scalable server-side applications with Node.js",
+      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
       "duration": "6 Weeks",
       "level": "Intermediate"
     },
     {
       "id": 5,
-      "title": "Full-Stack Development",
-      "description": "Build full-stack web applications with React, Node.js, and MongoDB",
-      "image": "your-url",
-      "duration": "12 Weeks",
+      "title": "Python for Data Science",
+      "description": "Analyze and visualize data with Python libraries",
+      "image": "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      "duration": "5 Weeks",
+      "level": "Beginner"
+    },
+    {
+      "id": 6,
+      "title": "DevOps Essentials",
+      "description": "Learn CI/CD pipelines and cloud deployment strategies",
+      "image": "https://media.istockphoto.com/id/2167850086/photo/devops-software-development-operations-programmer-administration-system-life-cycle-quality.jpg?s=2048x2048&w=is&k=20&c=x9c5yaorCb6cly6BYpCO7W98VI0DQsYSgdhx_xzKyc0=",
+      "duration": "7 Weeks",
       "level": "Advanced"
-    }
+    },
+    {
+        "id": 7,
+        "title": "Git and Github for Beginners",
+        "description": "Learn Version control",
+        "image": "https://images.unsplash.com/photo-1618401479427-c8ef9465fbe1?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "duration": "7 Weeks",
+        "level": "Intermediate"
+      }
   ]
   

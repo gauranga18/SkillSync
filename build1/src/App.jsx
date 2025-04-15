@@ -12,6 +12,7 @@ import AuthForm from './components/AuthForm';
 import ContactUs from './components/ContactUs';
 import Settings from './components/Settings';
 import SurveyModal from './components/SurveyModal';
+import Course from './components/Course'
 
 function App() {                      
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/AuthForm" element={<AuthForm />} />
           <Route path="/Settings" element={<Settings />} />
           <Route path="/SurveyModal" element={<SurveyModal />} />
+          <Route path="/Course" element={<Course />} />
         </Routes>
         {/* Uncomment Footer if you want it visible */}
         {/* <Footer /> */}
