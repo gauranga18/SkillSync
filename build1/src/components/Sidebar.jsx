@@ -51,7 +51,7 @@ const Sidebar = () => {
               transition={{ duration: 0.2 }}
               className="text-xl font-bold text-white"
             >
-              SkillSync
+              
             </motion.div>
           )}
         </AnimatePresence>
