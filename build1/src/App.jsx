@@ -4,7 +4,7 @@ import CareerReadinessSection from './components/CareerReadinessSection';
 import Homepage from './components/HomePage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProfileSection from './components/ProfileSection';
-import Footer from './components/Footer'; // Uncomment or remove based on usage
+// import Footer from './components/Footer'; 
 import AboutUs from './components/AboutUs';
 import CommunitySection from './components/CommunitySection';
 import AuthForm from './components/AuthForm';
