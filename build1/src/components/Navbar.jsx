@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaHome, FaInfoCircle, FaCogs, FaEnvelope, FaUser, FaTimes, FaBars, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
+import CourseList from './Course';
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
@@ -24,7 +24,7 @@ const Navbar = () => {
   ];
 
   const servicesLinks = [
-    { path: "/ResourceSection", text: "Resources" },
+    { path: "/Course", text: "Resources" },
     { path: "/CommunitySection", text: "Community" }
   ];
 
